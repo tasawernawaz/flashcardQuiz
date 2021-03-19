@@ -32,7 +32,7 @@ class App extends React.Component {
   renderItem ({ item }) {
     return (
       <View style={styles.item}>
-      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.title}>{item.title} : {item.questions.length}</Text>
     </View>
     )
   }
