@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import HeaderText from './HeaderText'
 
 let deck = {
 
@@ -20,6 +21,7 @@ class DeckView extends React.Component {
     render () {
         return (
             <View>
+                <HeaderText headerText={`${deck.title} : ${deck.questions.length}`} />
                 <View>
                     <Text>{deck.title} : {deck.questions.length}</Text>
                 </View>

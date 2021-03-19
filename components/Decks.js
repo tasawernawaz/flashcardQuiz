@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native'
+import HeaderText from '../components/HeaderText'
 
 
 const DecsData = {
@@ -44,7 +45,7 @@ class Decks extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Your Decks</Text>
+        <HeaderText headerText="You Decks" />
         <FlatList
           data={Object.values(DecsData)}
           renderItem={this.renderItem}
