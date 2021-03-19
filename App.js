@@ -1,21 +1,70 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+const DECKS = {
+  React: {
+    title: 'React',
+    questions: [
+      {
+        question: 'What is React?',
+        answer: 'A library for managing user interfaces'
+      },
+      {
+        question: 'Where do you make Ajax requests in React?',
+        answer: 'The componentDidMount lifecycle event'
+      }
+    ]
+  },
+  JavaScript: {
+    title: 'JavaScript',
+    questions: [
+      {
+        question: 'What is a closure?',
+        answer: 'The combination of a function and the lexical environment within which that function was declared.'
+      }
+    ]
+  }
 }
+
+class App extends React.Component {
+
+  renderItem ({ item }) {
+    return (
+      <View style={styles.item}>
+      <Text style={styles.title}>{item.title}</Text>
+    </View>
+    )
+  }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <Text>Your Decs</Text>
+        <FlatList
+          data={Object.values(DECKS)}
+          renderItem={this.renderItem}
+          keyExtractor={(deck) => deck.title}
+        />
+      </View>
+    )
+  }
+}
+
+export default App
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: StatusBar.currentHeight || 0,
   },
-});
+  item: {
+    backgroundColor: '#4169E1',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+})
