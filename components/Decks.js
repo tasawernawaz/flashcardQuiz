@@ -10,7 +10,8 @@ class Decks extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props
-        dispatch(receiveDecs(getInitialDecks()))
+        getInitialDecks()
+        .then(dispatch(receiveDecs()))
     }
 
     renderItem({ item }) {
@@ -23,6 +24,13 @@ class Decks extends React.Component {
 
     render () {
         const { decks } = this.props
+        if (decks.length === 0) {
+            return (<View style={styles.container}>
+                <Text>You dont have any decks.</Text>
+            </View>)
+        }
+
+
         return (
             <View style={styles.container}>
             <HeaderText headerText="Your Decks" />

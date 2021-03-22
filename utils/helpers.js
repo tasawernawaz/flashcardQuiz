@@ -32,19 +32,9 @@ const DecsData = {
 
 const DECK_STORAGE_KEY = 'DECK_STORAGE_KEY'
 
-
-
 export function getInitialDecks() {
-
-  return DecsData
-
-  //  return AsyncStorage.getItem(DECK_STORAGE_KEY)
-    // .then(results => {
-    //   if (results) {
-    //     JSON.parse(results)
-    //   }
-    //   AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(DecsData)).then(() =>  DecsData)
-    // })
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+  .then(results => JSON.parse(results))
 }
 
 export function getDeck(id) {
