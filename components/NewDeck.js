@@ -4,6 +4,7 @@ import HeaderText from './HeaderText'
 import { addDeck } from '../actions/decks'
 import { addDeckApi, formatDeck } from '../utils/helpers'
 import { connect } from 'react-redux'
+import { NavigationActions } from '@react-navigation/native'
 
 class NewDeck extends React.Component {
     state = {
@@ -12,13 +13,21 @@ class NewDeck extends React.Component {
 
     handleSubmit = () => {
         const {dispatch} = this.props
-        const deck =  formatDeck(this.state.deckName)
+        const { deckName }= this.state
+        if (deckName === "") {
+            alert("Please enter valid deck name.")
+            return
+        }
+        const deck =  formatDeck(deckName)
         addDeckApi(deck)
         dispatch(addDeck(deck))
 
         this.setState({
             deckName: ""
         })
+
+        this.props.navigation.goBack(null)
+
     }
 
     render () {
