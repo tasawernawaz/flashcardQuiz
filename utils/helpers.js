@@ -38,22 +38,35 @@ export function getInitialDecks() {
 
   return DecsData
 
-  // return AsyncStorage.getItem(DECK_STORAGE_KEY)
-  //   .then(results => {
-  //     if (results === null) {
-  //       AsyncStorage.setItem(DECK_STORAGE_KEY, DecsData)
-  //       return DecsData
-  //     }
-  //     return results
-  //   })
+  //  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    // .then(results => {
+    //   if (results) {
+    //     JSON.parse(results)
+    //   }
+    //   AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(DecsData)).then(() =>  DecsData)
+    // })
 }
 
 export function getDeck(id) {
 
 }
 
-export function addDeck(title) {
+function generateUID () {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
 
+export function formatDeck (title) {
+  return {
+    id: generateUID(),
+    title,
+    quesitons: []
+  }
+}
+
+export function addDeckApi(deck) {
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
+    [deck.id]: deck
+  }))
 }
 
 export function addQuestionToDeck({title, question}) {

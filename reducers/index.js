@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import decks from '../reducers/decs'
+import decks from './decks'
 
 export default combineReducers({
     decks

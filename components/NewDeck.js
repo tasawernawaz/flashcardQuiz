@@ -1,20 +1,29 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
 import HeaderText from './HeaderText'
-
+import { addDeck } from '../actions/decks'
+import { addDeckApi, formatDeck } from '../utils/helpers'
+import { connect } from 'react-redux'
 
 class NewDeck extends React.Component {
     state = {
         deckName: "",
     }
 
-    handleSubmit () {
-        //we will submit data to db
+    handleSubmit = () => {
+        const {dispatch} = this.props
+        const deck =  formatDeck(this.state.deckName)
+        addDeckApi(deck)
+        dispatch(addDeck(deck))
+
+        this.setState({
+            deckName: ""
+        })
     }
 
     render () {
         return (
-            <View>
+            <View style={styles.container}>
                 <HeaderText headerText="New Deck"/>
                 <View>
                     <TextInput
@@ -32,4 +41,13 @@ class NewDeck extends React.Component {
     }
 }
 
-export default NewDeck
+export default connect()(NewDeck)
+
+
+const styles = StyleSheet.create({
+    container: {
+         flex: 1,
+         justifyContent: 'center',
+         alignItems: 'center'
+    }
+})
