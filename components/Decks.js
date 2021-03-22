@@ -1,69 +1,55 @@
 import React from 'react'
 import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native'
 import HeaderText from '../components/HeaderText'
+import { connect } from 'react-redux'
+import { receiveDecs } from '../actions/decks'
+import { getInitialDecks } from '../utils/helpers'
 
-
-const DecsData = {
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      },
-      {
-        question: 'What is a ES6?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
 
 class Decks extends React.Component {
 
-  renderItem ({ item }) {
-    return (
-      <View style={styles.item}>
-      <Text style={styles.title}>{item.title} : {item.questions.length}</Text>
-    </View>
-    )
-  }
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(receiveDecs(getInitialDecks()))
+    }
 
-  render () {
-    return (
-      <View style={styles.container}>
-        <HeaderText headerText="You Decks" />
-        <FlatList
-          data={Object.values(DecsData)}
-          renderItem={this.renderItem}
-          keyExtractor={(deck) => deck.title}
-        />
-      </View>
-    )
-  }
+    renderItem({ item }) {
+        return (
+            <View style={styles.dec}>
+                <Text style={styles.title}>{item.title}</Text>
+            </View>
+        )
+    }
+
+    render () {
+        const { decks } = this.props
+        return (
+            <View style={styles.container}>
+            <HeaderText headerText="Your Decks" />
+            <FlatList
+                data={decks}
+                renderItem={this.renderItem}
+                keyExtractor={(deck) => deck.title}
+            />
+            </View>
+        )
+    }
 }
 
-export default Decks
+function mapStateToProps({ decks }) {
+    return {
+        decks: Object.values(decks)
+    }
+}
+
+export default connect(mapStateToProps)(Decks)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
+  dec: {
     backgroundColor: '#4169E1',
     padding: 20,
     marginVertical: 8,
