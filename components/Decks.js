@@ -1,23 +1,34 @@
 import React from 'react'
-import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native'
+import { View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity } from 'react-native'
 import HeaderText from '../components/HeaderText'
 import { connect } from 'react-redux'
 import { receiveDecs } from '../actions/decks'
-import { getInitialDecks } from '../utils/helpers'
-
-
+import { getInitialDecks, setSampleData } from '../utils/helpers'
+import DeckView from './DeckView'
 class Decks extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props
-        getInitialDecks()
-        .then(dispatch(receiveDecs()))
+        setSampleData()
+        .then(() => {
+            getInitialDecks()
+            .then(dispatch(receiveDecs()))
+        })
+    }
+
+    handlePress = (event) => {
+        this.props.navigation.navigate('Deck View')
     }
 
     renderItem({ item }) {
         return (
             <View style={styles.dec}>
-                <Text style={styles.title}>{item.title}</Text>
+                <TouchableOpacity onPress={this.handlePress}>
+                    <Text style={styles.title} onPress={this.handlePress}>
+                        {item.title}
+                    </Text>
+                </TouchableOpacity>
+
             </View>
         )
     }
@@ -36,7 +47,7 @@ class Decks extends React.Component {
             <HeaderText headerText="Your Decks" />
             <FlatList
                 data={decks}
-                renderItem={this.renderItem}
+                renderItem={this.renderItem.bind(this)}
                 keyExtractor={(deck) => deck.title}
             />
             </View>

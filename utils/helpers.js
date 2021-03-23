@@ -32,6 +32,10 @@ const DecsData = {
 
 const DECK_STORAGE_KEY = 'DECK_STORAGE_KEY'
 
+export function setSampleData() {
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(DecsData))
+}
+
 export function getInitialDecks() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
   .then(results => JSON.parse(results))

@@ -11,6 +11,18 @@ import reducer from './reducers/'
 import middleware from './middleware'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+function DeckStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="My Decks" component={Decks} />
+        <Stack.Screen name="Deck View" component={DeckView} />
+      </Stack.Navigator>
+    )
+  }
 
 const Tab = createBottomTabNavigator()
 
@@ -18,7 +30,7 @@ function HomePageTabs() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="My Decks" component={Decks} />
+        <Tab.Screen name="Decks Stack" component={DeckStack} />
         <Tab.Screen name="Add New" component={NewDeck} />
       </Tab.Navigator>
     </NavigationContainer>
