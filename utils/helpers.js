@@ -53,7 +53,7 @@ export function formatDeck (title) {
   return {
     id: generateUID(),
     title,
-    quesitons: []
+    questions: []
   }
 }
 
