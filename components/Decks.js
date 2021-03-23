@@ -48,7 +48,7 @@ class Decks extends React.Component {
             <FlatList
                 data={decks}
                 renderItem={this.renderItem.bind(this)}
-                keyExtractor={(deck) => deck.title}
+                keyExtractor={(deck) => deck.id}
             />
             </View>
         )
