@@ -22,9 +22,9 @@ class DeckView extends React.Component {
     }
 }
 
-function mapStateToProps({decks}) {
+function mapStateToProps({decks}, {route}) {
     return {
-        deck: Object.values(decks)[0]
+        deck: decks[route.params.id]
     }
 }
 

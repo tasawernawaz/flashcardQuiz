@@ -16,15 +16,15 @@ class Decks extends React.Component {
         })
     }
 
-    handlePress = (event) => {
-        this.props.navigation.navigate('Deck View')
+    handlePress = (id) => {
+        this.props.navigation.navigate('Deck View', {id})
     }
 
     renderItem({ item }) {
         return (
             <View style={styles.dec}>
-                <TouchableOpacity onPress={this.handlePress}>
-                    <Text style={styles.title} onPress={this.handlePress}>
+                <TouchableOpacity id={item.id} onPress={() => this.handlePress(item.id)}>
+                    <Text style={styles.title}>
                         {item.title}
                     </Text>
                 </TouchableOpacity>
