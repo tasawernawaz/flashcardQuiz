@@ -42,6 +42,7 @@ export function getInitialDecks() {
 }
 
 export function getDeck(id) {
+  return getInitialDecks().then(results => JSON.stringify(results)[id])
 
 }
 
@@ -63,6 +64,16 @@ export function addDeckApi(deck) {
   }))
 }
 
-export function addQuestionToDeck({title, question}) {
-
+export function addQuestionToDeckApi({id, ...question}) {
+  getInitialDecks((decks) => {
+    alert(decks.length)
+    decks = {
+      ...decks,
+      [id] : {
+          ...decks[id],
+          questions: [...decks[id].questions, question]
+          }
+      }
+    return AsyncStorage.setItem(DECK_STORAGE_KEY, decks)
+  })
 }

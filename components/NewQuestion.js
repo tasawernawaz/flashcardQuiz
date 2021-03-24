@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import HeaderText from './HeaderText'
 import { connect } from 'react-redux'
+import { addQuestionToDeckApi } from '../utils/helpers'
+import { addQuestionToDeck } from '../actions/questions'
 
 
 class NewQuestion extends React.Component {
@@ -10,8 +12,25 @@ class NewQuestion extends React.Component {
         answer: ""
     }
 
-    handleSubmit () {
-        //we will submit data to db
+    handleSubmit = (id) => {
+        const {dispatch} = this.props
+        const { question, answer }= this.state
+        if (this.state.question === "" || this.state.answer == "") {
+            alert("Please enter valid data before submit.")
+            return
+        }
+
+        const questionData = {id, question, answer}
+
+        addQuestionToDeckApi(questionData)
+        dispatch(addQuestionToDeck(questionData))
+
+        this.setState({
+            question: "",
+            answer: ""
+        })
+
+        this.props.navigation.goBack({key: "Deck View"})
     }
 
     render () {
@@ -34,7 +53,7 @@ class NewQuestion extends React.Component {
                     onChangeText={(text) => this.setState({answer: text})}
                     >
                     </TextInput>
-                    <TouchableOpacity onPress={this.handleSubmit}>
+                    <TouchableOpacity onPress={() => this.handleSubmit(deck.id)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>

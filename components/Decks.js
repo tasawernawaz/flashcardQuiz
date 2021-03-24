@@ -25,7 +25,7 @@ class Decks extends React.Component {
             <View style={styles.dec}>
                 <TouchableOpacity id={item.id} onPress={() => this.handlePress(item.id)}>
                     <Text style={styles.title}>
-                        {item.title}
+                        {item.title} : {item.questions.length}
                     </Text>
                 </TouchableOpacity>
 

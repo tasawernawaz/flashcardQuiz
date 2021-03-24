@@ -1,4 +1,5 @@
 import { ADD_DECK, RECEIVE_DECKS } from '../actions/decks'
+import {ADD_QUESTION } from '../actions/questions'
 
 
 export default function decks(state={}, action) {
@@ -15,7 +16,16 @@ export default function decks(state={}, action) {
                     ...action.deck
                 }
             }
+        case ADD_QUESTION:
+            const {id, ...question} = action.data
+            return {
+                ...state,
+                [id] : {
+                    ...state[id],
+                    questions: [...state[id].questions, question]
+                    }
+                }
         default:
             return state
-        }
+    }
 }
