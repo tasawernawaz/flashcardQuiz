@@ -2,7 +2,7 @@ import React from 'react'
 import { View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity } from 'react-native'
 import HeaderText from '../components/HeaderText'
 import { connect } from 'react-redux'
-import { receiveDecs } from '../actions/decks'
+import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
 import DeckView from './DeckView'
 class Decks extends React.Component {
@@ -12,7 +12,7 @@ class Decks extends React.Component {
         setSampleData()
         .then(() => {
             getInitialDecks()
-            .then(dispatch(receiveDecs()))
+            .then(dispatch(receivedecks()))
         })
     }
 

@@ -3,7 +3,7 @@ import { getDecks, addDeckApi } from '../utils/helpers'
 export const RECEIVE_DECKS = "RECEIVE_DECKS"
 export const ADD_DECK = "ADD_DECK"
 
-export function receiveDecs(decks) {
+export function receivedecks(decks) {
     return {
         type: RECEIVE_DECKS,
         decks

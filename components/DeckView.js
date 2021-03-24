@@ -4,6 +4,11 @@ import HeaderText from './HeaderText'
 import { connect } from 'react-redux'
 
 class DeckView extends React.Component {
+
+    handlePress = (id) => {
+        this.props.navigation.navigate('New Question', {id})
+    }
+
     render () {
         const { deck } = this.props
         return (
@@ -13,7 +18,7 @@ class DeckView extends React.Component {
                     <TouchableOpacity>
                         <Text>Start Quiz</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handlePress(deck.id)}>
                         <Text>Add new question</Text>
                     </TouchableOpacity>
                 </View>

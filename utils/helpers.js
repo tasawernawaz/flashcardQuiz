@@ -1,7 +1,7 @@
 
 import { AsyncStorage } from 'react-native'
 
-const DecsData = {
+const decksData = {
     React: {
       title: 'React',
       questions: [
@@ -33,7 +33,7 @@ const DecsData = {
 const DECK_STORAGE_KEY = 'DECK_STORAGE_KEY'
 
 export function setSampleData() {
-  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(DecsData))
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(decksData))
 }
 
 export function getInitialDecks() {

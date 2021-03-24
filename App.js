@@ -20,6 +20,8 @@ function DeckStack() {
       <Stack.Navigator>
         <Stack.Screen name="My Decks" component={Decks} />
         <Stack.Screen name="Deck View" component={DeckView} />
+        <Stack.Screen name="New Question" component={NewQuestion} />
+        <Stack.Screen name="Quiz View" component={QuizView} />
       </Stack.Navigator>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import HeaderText from './HeaderText'
+import { connect } from 'react-redux'
 
 
 class NewQuestion extends React.Component {
@@ -15,9 +16,11 @@ class NewQuestion extends React.Component {
 
     render () {
         const {question, answer} = this.state
+        const {deck} = this.props
         return (
             <View>
                 <HeaderText headerText="New Question"/>
+                <Text>{deck.title}</Text>
                 <View>
                     <TextInput
                     placeholder="Enter a question"
@@ -40,4 +43,9 @@ class NewQuestion extends React.Component {
     }
 }
 
-export default NewQuestion
+function mapStateToProps({decks}, {route}) {
+    return {
+        deck: decks[route.params.id]
+    }
+}
+export default connect(mapStateToProps)(NewQuestion)
