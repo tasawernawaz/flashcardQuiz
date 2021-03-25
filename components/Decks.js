@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
 import DeckView from './DeckView'
+import { navyBlue, navyBlueLight, white } from '../utils/colors'
 class Decks extends React.Component {
 
     componentDidMount() {
@@ -25,7 +26,7 @@ class Decks extends React.Component {
             <View style={styles.dec}>
                 <TouchableOpacity id={item.id} onPress={() => this.handlePress(item.id)}>
                     <Text style={styles.title}>
-                        {item.title} : {item.questions.length}
+                        {item.title}<Text style={styles.length}>({item.questions.length} questions)</Text>
                     </Text>
                 </TouchableOpacity>
 
@@ -44,7 +45,6 @@ class Decks extends React.Component {
 
         return (
             <View style={styles.container}>
-            <HeaderText headerText="Your Decks" />
             <FlatList
                 data={decks}
                 renderItem={this.renderItem.bind(this)}
@@ -67,14 +67,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: navyBlue,
   },
   dec: {
-    backgroundColor: '#4169E1',
+    backgroundColor: navyBlueLight,
     padding: 20,
-    marginVertical: 8,
+    marginTop: 15,
+    marginVertical: 4,
     marginHorizontal: 16,
+    borderRadius: 15
   },
   title: {
-    fontSize: 32,
+      color: white,
+      fontSize: 32,
   },
+  length: {
+      fontSize: 20,
+      fontStyle: 'italic'
+  }
 })
