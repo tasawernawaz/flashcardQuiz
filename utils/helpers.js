@@ -2,8 +2,8 @@
 import { AsyncStorage } from 'react-native'
 
 const decksData = {
-    React: {
-      id: 'xyz-100',
+    xyz100: {
+      id: 'xyz100',
       title: 'React',
       questions: [
         {
@@ -16,8 +16,8 @@ const decksData = {
         }
       ]
     },
-    JavaScript: {
-      id: 'xyz-101',
+    xyz101: {
+      id: 'xyz101',
       title: 'JavaScript',
       questions: [
         {
