@@ -1,5 +1,6 @@
 export const navyBlue = '#242A3E'
 export const navyBlueLight = '#2E425A'
+export const navyBlurDark = '#080E14'
 export const white = '#fff'
 export const red = '#b71845'
 export const green = '#008000'

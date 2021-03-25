@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
 import DeckView from './DeckView'
-import { navyBlue, navyBlueLight, white } from '../utils/colors'
+import { navyBlue, navyBlueLight, navyBlurDark, white } from '../utils/colors'
 class Decks extends React.Component {
 
     componentDidMount() {
@@ -37,8 +37,11 @@ class Decks extends React.Component {
     render () {
         const { decks } = this.props
         if (decks.length === 0) {
-            return (<View style={styles.container}>
-                <Text>You dont have any decks.</Text>
+            return (<View style={styles.noDeck}>
+                <Text style={styles.noDeckText}>You dont have any decks.</Text>
+                <TouchableOpacity style={styles.btnLoadSample}>
+                    <Text style={styles.noDeckText}>Load Sample Decks</Text>
+                </TouchableOpacity>
             </View>)
         }
 
@@ -66,9 +69,25 @@ export default connect(mapStateToProps)(Decks)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
     backgroundColor: navyBlue,
   },
+  noDeck: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: navyBlueLight,
+  },
+  noDeckText: {
+      color: white,
+      fontSize:20
+    },
+    btnLoadSample: {
+        marginTop: 10,
+        alignItems: "center",
+        backgroundColor: navyBlurDark,
+        padding: 10,
+        borderRadius: 10
+    },
   dec: {
     backgroundColor: navyBlueLight,
     padding: 20,
