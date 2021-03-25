@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import HeaderText from './HeaderText'
+import { connect } from 'react-redux'
+
 
 class QuizView extends React.Component {
     render () {
@@ -13,4 +15,5 @@ class QuizView extends React.Component {
     }
 }
 
-export default QuizView
+
+export default connect()(QuizView)

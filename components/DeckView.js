@@ -5,8 +5,12 @@ import { connect } from 'react-redux'
 
 class DeckView extends React.Component {
 
-    handlePress = (id) => {
-        this.props.navigation.navigate('New Question', {id})
+    handleStartQuizPress = (deck) => {
+        this.props.navigation.navigate('Quiz View', {deck})
+    }
+
+    handleAddQuestionPress = (deck) => {
+        this.props.navigation.navigate('New Question', {deck})
     }
 
     render () {
@@ -15,10 +19,10 @@ class DeckView extends React.Component {
             <View>
                 <HeaderText headerText={`${deck.title} : ${deck.questions.length}`} />
                 <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handleStartQuizPress(deck)}>
                         <Text>Start Quiz</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.handlePress(deck.id)}>
+                    <TouchableOpacity onPress={() => this.handleAddQuestionPress(deck.id)}>
                         <Text>Add new question</Text>
                     </TouchableOpacity>
                 </View>

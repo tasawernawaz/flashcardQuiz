@@ -35,7 +35,7 @@ class NewQuestion extends React.Component {
 
     render () {
         const {question, answer} = this.state
-        const {deck} = this.props
+        const {deck} = this.props.route.params
         return (
             <View>
                 <HeaderText headerText="New Question"/>
@@ -53,7 +53,7 @@ class NewQuestion extends React.Component {
                     onChangeText={(text) => this.setState({answer: text})}
                     >
                     </TextInput>
-                    <TouchableOpacity onPress={() => this.handleSubmit(deck.id)}>
+                    <TouchableOpacity onPress={() => this.handleSubmit(deck)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>
                 </View>
@@ -62,9 +62,4 @@ class NewQuestion extends React.Component {
     }
 }
 
-function mapStateToProps({decks}, {route}) {
-    return {
-        deck: decks[route.params.id]
-    }
-}
-export default connect(mapStateToProps)(NewQuestion)
+export default connect()(NewQuestion)
