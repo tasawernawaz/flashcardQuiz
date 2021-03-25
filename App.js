@@ -34,7 +34,14 @@ const Tab = createBottomTabNavigator()
 function HomePageTabs() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+            tabBarOptions={{
+              labelStyle: {
+                fontSize: 15,
+                color: navyBlue
+              }
+            }}
+        >
         <Tab.Screen
         name="Decks Stack"
         component={DeckStack}
