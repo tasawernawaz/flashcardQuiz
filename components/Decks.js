@@ -6,15 +6,18 @@ import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
 import DeckView from './DeckView'
 import { navyBlue, navyBlueLight, navyBlurDark, white } from '../utils/colors'
+
+
 class Decks extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props
-        setSampleData()
-        .then(() => {
-            getInitialDecks()
-            .then(dispatch(receivedecks()))
-        })
+        getInitialDecks().then((decks) => dispatch(receivedecks(decks)))
+    }
+
+    LoadSampleDecks = () => {
+        const { dispatch } = this.props
+        setSampleData().then((decks) => dispatch(receivedecks(decks)))
     }
 
     handlePress = (id) => {
@@ -29,7 +32,6 @@ class Decks extends React.Component {
                         {item.title}<Text style={styles.length}>({item.questions.length} questions)</Text>
                     </Text>
                 </TouchableOpacity>
-
             </View>
         )
     }
@@ -39,12 +41,11 @@ class Decks extends React.Component {
         if (decks.length === 0) {
             return (<View style={styles.noDeck}>
                 <Text style={styles.noDeckText}>You dont have any decks.</Text>
-                <TouchableOpacity style={styles.btnLoadSample}>
+                <TouchableOpacity style={styles.btnLoadSample} onPress={this.LoadSampleDecks}>
                     <Text style={styles.noDeckText}>Load Sample Decks</Text>
                 </TouchableOpacity>
             </View>)
         }
-
 
         return (
             <View style={styles.container}>

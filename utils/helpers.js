@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native'
 
 const decksData = {
     React: {
+      id: 'xyz-100',
       title: 'React',
       questions: [
         {
@@ -16,6 +17,7 @@ const decksData = {
       ]
     },
     JavaScript: {
+      id: 'xyz-101',
       title: 'JavaScript',
       questions: [
         {
@@ -33,7 +35,8 @@ const decksData = {
 const DECK_STORAGE_KEY = 'DECK_STORAGE_KEY'
 
 export function setSampleData() {
-  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(decksData))
+  return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decksData))
+      .then(() => getInitialDecks())
 }
 
 export function getInitialDecks() {
@@ -43,7 +46,6 @@ export function getInitialDecks() {
 
 export function getDeck(id) {
   return getInitialDecks().then(results => JSON.stringify(results)[id])
-
 }
 
 function generateUID () {
