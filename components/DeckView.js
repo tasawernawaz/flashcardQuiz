@@ -2,11 +2,16 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import HeaderText from './HeaderText'
 import { connect } from 'react-redux'
+import decks from '../reducers/decks'
 
 class DeckView extends React.Component {
 
     handleStartQuizPress = (deck) => {
-        this.props.navigation.navigate('Quiz View', {deck})
+        if (deck.questions.length === 0) {
+            alert("You don't have any questions, please add questions before starting quiz.")
+        } else {
+            this.props.navigation.navigate('Quiz View', {deck})
+        }
     }
 
     handleAddQuestionPress = (deck) => {
