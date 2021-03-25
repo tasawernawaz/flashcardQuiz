@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import HeaderText from './HeaderText'
-import { connect } from 'react-redux'
 
 class QuizView extends React.Component {
 
@@ -23,7 +22,7 @@ class QuizView extends React.Component {
             "Your total score is: " + this.state.score,
             [{
                 text: "Ok",
-                onPress: () => this.props.navigation.navigate('Quiz View')
+                onPress: () => this.props.navigation.navigate('Deck View')
             }]
         )
 
@@ -93,4 +92,4 @@ class QuizView extends React.Component {
     }
 }
 
-export default connect()(QuizView)
+export default QuizView
