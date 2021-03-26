@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
 import DeckView from './DeckView'
-import { navyBlue, navyBlueLight, navyBlurDark, white } from '../utils/colors'
+import { navyBlue, navyBlueLight, navyBlueDark, white } from '../utils/colors'
 
 
 class Decks extends React.Component {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     btnLoadSample: {
         marginTop: 10,
         alignItems: "center",
-        backgroundColor: navyBlurDark,
+        backgroundColor: navyBlueDark,
         padding: 10,
         borderRadius: 10
     },

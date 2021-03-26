@@ -5,6 +5,7 @@ import { addDeck } from '../actions/decks'
 import { addDeckApi, formatDeck } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { NavigationActions } from '@react-navigation/native'
+import { navyBlue } from '../utils/colors'
 
 class NewDeck extends React.Component {
     state = {
@@ -32,9 +33,9 @@ class NewDeck extends React.Component {
 
     render () {
         return (
-            <View style={styles.container}>
+            <View style={{flex: 1}}>
                 <HeaderText headerText="New Deck"/>
-                <View>
+                <View style={styles.container}>
                     <TextInput
                     placeholder="Enter name of the deck"
                     value={this.state.deckName}
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     container: {
          flex: 1,
          justifyContent: 'center',
-         alignItems: 'center'
+         alignItems: 'center',
+         color: navyBlue
     }
 })
