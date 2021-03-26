@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native'
 import { green, navyBlue, white, wwhite, red } from '../utils/colors'
 import SubmitBtn from './SubmitBtn'
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers'
 
 class QuizView extends React.Component {
 
@@ -19,6 +20,9 @@ class QuizView extends React.Component {
 
     showScore = () => {
         const {score, totalQuestions} = this.state
+        clearLocalNotification()
+            .then(setLocalNotification)
+
         return Alert.alert(
             "Result",
             "Your total score is: " + (score/totalQuestions)*100 + "%",
@@ -37,7 +41,6 @@ class QuizView extends React.Component {
             }]
         )
     }
-
 
     handleAnswer = (correct) => {
         if(correct === true) {

@@ -1,5 +1,8 @@
 
 import { AsyncStorage } from 'react-native'
+import * as Permissions from 'expo-permissions'
+import * as Notifications from 'expo-notifications'
+
 
 const decksData = {
     xyz100: {
@@ -33,6 +36,8 @@ const decksData = {
 }
 
 const DECK_STORAGE_KEY = 'DECK_STORAGE_KEY'
+const DECK_QUIZ_NOTIFICATION = 'DECK_QUIZ_NOTIFICATION'
+
 
 export function setSampleData() {
   return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decksData))
@@ -78,4 +83,41 @@ export function addQuestionToDeckApi({id, ...question}) {
       }
     return AsyncStorage.setItem(DECK_STORAGE_KEY, decks)
   })
+}
+
+// notifications logic is inspired by the class porject
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(DECK_QUIZ_NOTIFICATION)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
+function createNotification () {
+  return {
+    title: 'Take a quiz!',
+    body: "Hey 👋, You havn't taken a quiz today.",
+  }
+}
+
+const createTrigger = () => ({
+    hour: 18, minute: 0, repeats: true
+})
+
+export function setLocalNotification () {
+  AsyncStorage.getItem(DECK_QUIZ_NOTIFICATION)
+    .then(JSON.parse)
+    .then((data) => {
+      if (data === null) {
+        Permissions.askAsync(Permissions.NOTIFICATIONS)
+          .then(({ status }) => {
+            if (status === 'granted') {
+              Notifications.cancelAllScheduledNotificationsAsync()
+              Notifications.scheduleNotificationAsync({
+                content: createNotification(),
+                trigger: createTrigger()
+              })
+              AsyncStorage.setItem(DECK_QUIZ_NOTIFICATION, JSON.stringify(true))
+            }
+          })
+      }
+    })
 }

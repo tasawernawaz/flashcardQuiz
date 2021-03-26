@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack';
 import { navyBlue, red } from './utils/colors'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import {setLocalNotification} from './utils/helpers'
 
 
 const Stack = createStackNavigator();
@@ -66,6 +67,9 @@ function HomePageTabs() {
   )
 }
 class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
 
   render () {
     return (
