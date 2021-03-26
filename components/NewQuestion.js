@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import HeaderText from './HeaderText'
 import { connect } from 'react-redux'
 import { addQuestionToDeckApi } from '../utils/helpers'
 import { addQuestionToDeck } from '../actions/questions'
+import TextInputView from './TextInputVIew'
 
 
 class NewQuestion extends React.Component {
@@ -38,21 +38,20 @@ class NewQuestion extends React.Component {
         const {deck} = this.props.route.params
         return (
             <View>
-                <HeaderText headerText="New Question"/>
                 <Text>{deck.title}</Text>
                 <View>
-                    <TextInput
+                    <TextInputView
                     placeholder="Enter a question"
                     value={question}
-                    onChangeText={(text) => this.setState({question: text})}
-                    >
-                    </TextInput>
-                    <TextInput
+                    onChangeTextHandler={(text) => this.setState({question: text})}
+                    />
+
+                    <TextInputView
                     placeholder="Enter the answer"
                     value={answer}
-                    onChangeText={(text) => this.setState({answer: text})}
-                    >
-                    </TextInput>
+                    onChangeTextHandler={(text) => this.setState({answer: text})}
+                    />
+
                     <TouchableOpacity onPress={() => this.handleSubmit(deck)}>
                         <Text>Submit</Text>
                     </TouchableOpacity>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import HeaderText from './HeaderText'
 import { connect } from 'react-redux'
 import decks from '../reducers/decks'
 
@@ -22,7 +21,6 @@ class DeckView extends React.Component {
         const { deck } = this.props
         return (
             <View>
-                <HeaderText headerText={`${deck.title} : ${deck.questions.length}`} />
                 <View>
                     <TouchableOpacity onPress={() => this.handleStartQuizPress(deck)}>
                         <Text>Start Quiz</Text>

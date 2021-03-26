@@ -6,6 +6,7 @@ import { addDeckApi, formatDeck } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { NavigationActions } from '@react-navigation/native'
 import { navyBlue } from '../utils/colors'
+import TextInputView from './TextInputVIew'
 
 class NewDeck extends React.Component {
     state = {
@@ -36,12 +37,11 @@ class NewDeck extends React.Component {
             <View style={{flex: 1}}>
                 <HeaderText headerText="New Deck"/>
                 <View style={styles.container}>
-                    <TextInput
-                    placeholder="Enter name of the deck"
-                    value={this.state.deckName}
-                    onChangeText={(text) => this.setState({deckName: text})}
-                    >
-                    </TextInput>
+                    <TextInputView
+                        placeholder="Enter name of the deck"
+                        value={this.state.deckName}
+                        onChangeTextHandler={(text) => this.setState({deckName: text})}
+                    />
                     <TouchableOpacity onPress={this.handleSubmit}>
                         <Text>Submit</Text>
                     </TouchableOpacity>

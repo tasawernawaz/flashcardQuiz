@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Alert } from 'react-native'
-import HeaderText from './HeaderText'
 
 class QuizView extends React.Component {
 
@@ -59,7 +58,6 @@ class QuizView extends React.Component {
 
         return (
             <View>
-                <HeaderText headerText="Quiz in progress"/>
                 <Text>{questionNumber} / {totalQuestions}</Text>
                 <Text>Your scrore: {score}</Text>
 

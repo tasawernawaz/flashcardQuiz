@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, FlatList, StyleSheet, Text, StatusBar, TouchableOpacity } from 'react-native'
-import HeaderText from '../components/HeaderText'
 import { connect } from 'react-redux'
 import { receivedecks } from '../actions/decks'
 import { getInitialDecks, setSampleData } from '../utils/helpers'
