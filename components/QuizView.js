@@ -1,5 +1,7 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native'
+import { green, navyBlue, white, wwhite, red } from '../utils/colors'
+import SubmitBtn from './SubmitBtn'
 
 class QuizView extends React.Component {
 
@@ -15,15 +17,18 @@ class QuizView extends React.Component {
         }
     }
 
-    showScore = () =>
-        Alert.alert(
+    showScore = () => {
+        const {score, totalQuestions} = this.state
+        return Alert.alert(
             "Result",
-            "Your total score is: " + this.state.score,
+            "Your total score is: " + (score/totalQuestions)*100 + "%",
             [{
                 text: "Ok",
                 onPress: () => this.props.navigation.navigate('Deck View')
             }]
         )
+    }
+
 
     handleAnswer = (correct) => {
         if(correct === true) {
@@ -57,33 +62,33 @@ class QuizView extends React.Component {
         const currentQuestion = questions[(questionNumber - 1)]
 
         return (
-            <View>
-                <Text>{questionNumber} / {totalQuestions}</Text>
-                <Text>Your scrore: {score}</Text>
+            <View style={styles.container}>
+                <View style={{flex: 1, paddingTop:20}}>
+                    <Text style={styles.text}>Quiz count: {questionNumber} / {totalQuestions}</Text>
+                    <Text style={styles.text}>Your scrore: {(score/totalQuestions)*100}%</Text>
+                </View>
 
-                <View>
-                    <Text>{currentQuestion.question}</Text>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Question: {currentQuestion.question}?</Text>
+                    {showAnswer && <Text style={styles.text}>Answer: {currentQuestion.answer}</Text>}
 
-                    {showAnswer ? (
-                        <View>
-                            <Text>{currentQuestion.answer}</Text>
-                            <TouchableOpacity onPress={this.handleToggle}>
-                                <Text>Show Question</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ):
-                        <TouchableOpacity onPress={this.handleToggle}>
-                            <Text>Show Answer</Text>
-                        </TouchableOpacity>
-                    }
+                    <SubmitBtn
+                    onPressHandler={this.handleToggle}
+                    btnText={showAnswer ? "Show Question" : "Show Answer"}
+                    />
+                </View>
 
-                    <TouchableOpacity onPress={() => this.handleAnswer(true)}>
-                        <Text>Correct</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => this.handleAnswer(false)}>
-                        <Text>Incorret</Text>
-                    </TouchableOpacity>
+                <View style={{flex:1}}>
+                    <SubmitBtn
+                    style={{color: green}}
+                    onPressHandler={() => this.handleAnswer(true)}
+                    btnText="Correct"
+                    />
+                    <SubmitBtn
+                    style={{color: red}}
+                    onPressHandler={() => this.handleAnswer(false)}
+                    btnText="Incorrect"
+                    />
                 </View>
             </View>
         )
@@ -91,3 +96,17 @@ class QuizView extends React.Component {
 }
 
 export default QuizView
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: navyBlue,
+    },
+    text: {
+        color: white,
+        fontSize: 20
+
+    }
+})

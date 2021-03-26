@@ -3,10 +3,10 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 import {white, navyBlueLight} from '../utils/colors'
 
 
-export default function SubmitBtn({btnText, onPressHandler}) {
+export default function SubmitBtn({btnText, onPressHandler, style={}}) {
     return (
         <TouchableOpacity style={styles.btn} onPress={onPressHandler}>
-            <Text style={styles.text}>{btnText}</Text>
+            <Text style={[styles.text, style]}>{btnText}</Text>
         </TouchableOpacity>
     )
 }
