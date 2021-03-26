@@ -42,7 +42,7 @@ class NewDeck extends React.Component {
                         onChangeTextHandler={(text) => this.setState({deckName: text})}
                     />
                     <SubmitBtn
-                        btnText="Submit"
+                        btnText="Create Deck"
                         onPressHandler={this.handleSubmit}
                     />
 

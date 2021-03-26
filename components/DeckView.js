@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import decks from '../reducers/decks'
-import { navyBlue } from '../utils/colors'
+import { white, navyBlue } from '../utils/colors'
 import SubmitBtn from './SubmitBtn'
 
 class DeckView extends React.Component {
@@ -23,14 +23,21 @@ class DeckView extends React.Component {
         const { deck } = this.props
         return (
             <View style={styles.container}>
-                <SubmitBtn
-                btnText="Start Quiz"
-                onPressHandler={() => this.handleStartQuizPress(deck)}
-                />
-                <SubmitBtn
-                btnText="Add New Question"
-                onPressHandler={() => this.handleAddQuestionPress(deck.id)}
-                />
+                <View style={{flex:1, paddingTop: 20}}>
+                    <Text style={styles.title}>
+                        {deck.title}<Text style={styles.length}>({deck.questions.length} questions)</Text>
+                    </Text>
+                </View>
+                <View style={{flex:1}}>
+                    <SubmitBtn
+                    btnText="Start Quiz"
+                    onPressHandler={() => this.handleStartQuizPress(deck)}
+                    />
+                    <SubmitBtn
+                    btnText="Add New Question"
+                    onPressHandler={() => this.handleAddQuestionPress(deck.id)}
+                    />
+                </View>
             </View>
         )
     }
@@ -49,5 +56,14 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: navyBlue}
+        backgroundColor: navyBlue
+    },
+    title: {
+        color: white,
+        fontSize: 32,
+    },
+    length: {
+        fontSize: 20,
+        fontStyle: 'italic'
+    }
 })
