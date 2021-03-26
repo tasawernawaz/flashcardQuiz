@@ -1,12 +1,13 @@
 import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import { navyBlueLight, white } from '../utils/colors'
+import { navyBlueLight, offWhite, white } from '../utils/colors'
 
 export default function TextInputView(props) {
     const {placeholder, value, onChangeTextHandler} = props
     return (
         <TextInput style={styles.textInput}
         placeholder={placeholder}
+        placeholderTextColor={offWhite}
         value={value}
         onChangeText={(text) => onChangeTextHandler(text)}
         >

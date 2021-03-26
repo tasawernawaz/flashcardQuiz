@@ -20,12 +20,15 @@ const Stack = createStackNavigator();
 
 function DeckStack() {
     return (
-      <Stack.Navigator>
-        <Stack.Screen name="My Decks" component={Decks} />
-        <Stack.Screen name="Deck View" component={DeckView} />
-        <Stack.Screen name="New Question" component={NewQuestion} />
-        <Stack.Screen name="Quiz View" component={QuizView} />
-      </Stack.Navigator>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomePageTabs} />
+          <Stack.Screen name="Deck View" component={DeckView} />
+          <Stack.Screen name="New Question" component={NewQuestion} />
+          <Stack.Screen name="Quiz View" component={QuizView} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
     )
   }
 
@@ -33,7 +36,6 @@ const Tab = createBottomTabNavigator()
 
 function HomePageTabs() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
             tabBarOptions={{
               labelStyle: {
@@ -43,8 +45,8 @@ function HomePageTabs() {
             }}
         >
         <Tab.Screen
-        name="Decks Stack"
-        component={DeckStack}
+        name="My Decks"
+        component={Decks}
         options={{
           tabBarIcon: () => (
             <MaterialCommunityIcons name="home" color={navyBlue} size={30} />
@@ -61,7 +63,6 @@ function HomePageTabs() {
         }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 class App extends React.Component {
@@ -69,7 +70,7 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={createStore(reducer, middleware)}>
-        <HomePageTabs />
+        <DeckStack />
       </Provider>
     )
   }
