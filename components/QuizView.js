@@ -23,8 +23,17 @@ class QuizView extends React.Component {
             "Result",
             "Your total score is: " + (score/totalQuestions)*100 + "%",
             [{
-                text: "Ok",
+                text: "Back to Deck",
                 onPress: () => this.props.navigation.navigate('Deck View')
+            },
+            {
+                text: "Restart Quiz",
+                onPress: () => this.setState({
+                    questionNumber: 1,
+                    showAnswer: false,
+                    score: 0,
+                    quizEnd: false
+                })
             }]
         )
     }
