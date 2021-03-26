@@ -22,7 +22,7 @@ function DeckStack() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomePageTabs} />
+          <Stack.Screen name="Deck Stack" component={HomePageTabs} />
           <Stack.Screen name="Deck View" component={DeckView} />
           <Stack.Screen name="New Question" component={NewQuestion} />
           <Stack.Screen name="Quiz View" component={QuizView} />

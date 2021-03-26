@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
-import HeaderText from './HeaderText'
 import { addDeck } from '../actions/decks'
 import { addDeckApi, formatDeck } from '../utils/helpers'
 import { connect } from 'react-redux'
@@ -36,7 +35,6 @@ class NewDeck extends React.Component {
     render () {
         return (
             <View style={{flex: 1}}>
-                <HeaderText headerText="New Deck"/>
                 <View style={styles.container}>
                     <TextInputView
                         placeholder="Enter name of the deck"
