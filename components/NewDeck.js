@@ -5,8 +5,9 @@ import { addDeck } from '../actions/decks'
 import { addDeckApi, formatDeck } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { NavigationActions } from '@react-navigation/native'
-import { navyBlue } from '../utils/colors'
+import { navyBlue, white } from '../utils/colors'
 import TextInputView from './TextInputVIew'
+import SubmitBtn from './SubmitBtn'
 
 class NewDeck extends React.Component {
     state = {
@@ -42,9 +43,11 @@ class NewDeck extends React.Component {
                         value={this.state.deckName}
                         onChangeTextHandler={(text) => this.setState({deckName: text})}
                     />
-                    <TouchableOpacity onPress={this.handleSubmit}>
-                        <Text>Submit</Text>
-                    </TouchableOpacity>
+                    <SubmitBtn
+                        btnText="Submit"
+                        onPressHandler={this.handleSubmit}
+                    />
+
                 </View>
             </View>
         )
@@ -59,6 +62,6 @@ const styles = StyleSheet.create({
          flex: 1,
          justifyContent: 'center',
          alignItems: 'center',
-         color: navyBlue
+         backgroundColor: navyBlue,
     }
 })

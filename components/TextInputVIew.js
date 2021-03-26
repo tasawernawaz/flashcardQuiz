@@ -1,5 +1,6 @@
 import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
+import { navyBlueLight, white } from '../utils/colors'
 
 export default function TextInputView(props) {
     const {placeholder, value, onChangeTextHandler} = props
@@ -16,11 +17,14 @@ export default function TextInputView(props) {
 
 const styles = StyleSheet.create({
     textInput : {
-        width:300,
-        height: 40,
+        width:400,
+        height: 50,
         margin: 12,
         borderWidth: 1,
         borderRadius: 5,
-        fontSize: 20
+        fontSize: 20,
+        color: white,
+        borderColor: white,
+        backgroundColor: navyBlueLight
     }
 })
